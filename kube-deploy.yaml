@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kube-test
+  labels:
+     app: kube
+     type: front-end
+spec:
+  template:
+     metadata:
+       name: kube-test
+       labels: 
+         app: kube
+         type: front-end
+     spec:
+         containers:
+           - name: kube-test
+             image: nginx
+  replicas: 1
+  selector:
+    matchLabels:
+      type: front-end
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kube-svc
+spec:
+  selector:
+    app: kube
+  type: NodePort  
+  ports:
+    - protocol: TCP
+      targetPort: 3000
+      port: 80
+      nodePort: 30000
