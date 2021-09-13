@@ -3,7 +3,7 @@ agent any
 stages{
 stage("yaml"){
 steps{
-sh " git clone https://github.com/DEFINATE-RGB/kubenetes.git "
+sh " git clone https://github.com/DEFINATE-RGB/kubernetes.git "
 }
 }
 stage("pod creation"){ 
